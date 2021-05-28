@@ -40,7 +40,7 @@ examples with Postman
 
 
 
-#### Get Cart
+### Get Cart
 ![get cart](https://user-images.githubusercontent.com/65148928/120029473-10359200-bfee-11eb-8a8d-a0681c735ed5.PNG)
 
 
