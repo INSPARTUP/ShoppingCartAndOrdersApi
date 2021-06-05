@@ -6,7 +6,7 @@ module.exports = (app) => {
   router.post("/addCart", CartController.add);
   router.post("/subtract", CartController.subtract);
   router.post("/remove", CartController.remove);
-  router.delete("/deleteProduit/:id", CartController.deleteProduit);
+  router.delete("/deleteProduit", CartController.deleteProduit);
 
   app.use("/api/cart", router);
 };

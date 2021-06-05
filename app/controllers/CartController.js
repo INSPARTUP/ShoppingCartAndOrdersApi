@@ -154,28 +154,39 @@ exports.remove = function (req, res, next) {
 };
 /**
  * delete cart by email.
- * @property {string} req.query.email
+ * @property {string} req.query.id
  * @returns {Cart}
  */
 exports.deleteProduit = (req, res) => {
-  const id = req.params.id;
-
-  cart.items
-    .findByIdAndRemove(id, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Impossible de supprimer le produit avec l'identifiant=${id}. Peut-être que le produit n'a pas été trouvé!`,
-        });
+  const { email, product_id } = req.body;
+  Cart.findOne({ email: email })
+    .exec()
+    .then((cart) => {
+      if (!cart || qty <= 0) {
+        throw new Error("Invalid request");
       } else {
-        res.send({
-          message: "Le produit a été supprimé avec succès!",
+        const indexFound = cart.items.findIndex((item) => {
+          return item.product_id === product_id;
         });
+        if (indexFound !== -1) {
+          console.log("index Found: ", indexFound);
+          console.log("before update items: ", cart.items);
+          cart.items[indexFound].remove();
+          console.log("after update items: ", cart.items);
+          return cart.save();
+        } else {
+          throw new Error("Invalid request");
+        }
       }
     })
+    .then((updatedCart) => res.json(updatedCart))
     .catch((err) => {
-      res.status(500).send({
-        message: "Impossible de supprimer le produit avec l'identifiant=" + id,
-      });
+      let error;
+      if (err.message === "Invalid request") {
+        error = new APIError(err.message, httpStatus.BAD_REQUEST, true);
+      } else {
+        error = new APIError(err.message, httpStatus.NOT_FOUND);
+      }
+      return next(error);
     });
 };
