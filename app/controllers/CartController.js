@@ -136,7 +136,6 @@ exports.get = function (req, res, next) {
 /**
  * delete cart by email.
  * @property {string} req.query.email
- * @property {string} req.query.product_id
  * @returns {Cart}
  */
 exports.remove = function (req, res, next) {
@@ -155,7 +154,8 @@ exports.remove = function (req, res, next) {
 };
 /**
  * delete cart by email.
- * @property {string} req.query.id
+ * @property {string} req.query.email
+ * @property {string} req.query.product_id
  * @returns {Cart}
  */
 exports.deleteProduit = (req, res) => {
@@ -172,7 +172,7 @@ exports.deleteProduit = (req, res) => {
         if (indexFound !== -1) {
           console.log("index Found: ", indexFound);
           console.log("before update items: ", cart.items);
-
+          cart.items[indexFound].remove();
           console.log("after update items: ", cart.items);
           return cart.save();
         } else {
