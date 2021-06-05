@@ -136,6 +136,7 @@ exports.get = function (req, res, next) {
 /**
  * delete cart by email.
  * @property {string} req.query.email
+ * @property {string} req.query.product_id
  * @returns {Cart}
  */
 exports.remove = function (req, res, next) {
