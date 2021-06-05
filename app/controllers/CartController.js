@@ -171,9 +171,7 @@ exports.deleteProduit = (req, res, next) => {
           return item.product_id === product_id;
         });
         if (indexFound !== -1) {
-          console.log("index Found: ", indexFound);
-          console.log("before update items: ", cart.items);
-          console.log("after update items: ", cart.items);
+          cart.items[indexFound].remove();
           return cart.save();
         } else {
           throw new Error("Invalid request");
