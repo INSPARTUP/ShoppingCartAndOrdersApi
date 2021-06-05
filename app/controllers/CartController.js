@@ -180,7 +180,7 @@ exports.deleteProduit = (req, res, next) => {
         }
       }
     })
-    .then((updatedCart) => res.json(indexFound))
+    .then((updatedCart) => res.json(updatedCart))
     .catch((err) => {
       let error;
       if (err.message === "Invalid request") {
