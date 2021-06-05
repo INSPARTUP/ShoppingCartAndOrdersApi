@@ -172,7 +172,6 @@ exports.deleteProduit = (req, res, next) => {
         if (indexFound !== -1) {
           console.log("index Found: ", indexFound);
           console.log("before update items: ", cart.items);
-          cart.items[indexFound].remove();
           console.log("after update items: ", cart.items);
           return cart.save();
         } else {
