@@ -158,7 +158,7 @@ exports.remove = function (req, res, next) {
  * @property {string} req.query.product_id
  * @returns {Cart}
  */
-exports.deleteProduit = (req, res) => {
+exports.deleteProduit = (req, res, next) => {
   const { email, product_id } = req.body;
   Cart.findOne({ email: email })
     .exec()
