@@ -46,7 +46,7 @@ examples with Postman
 
 
 
-### Remove from Cart
+### Clear Cart
 ![remove from cart](https://user-images.githubusercontent.com/65148928/120029493-13c91900-bfee-11eb-83a7-2c6750a5d3d0.PNG)
 
 
