@@ -164,7 +164,7 @@ exports.deleteProduit = (req, res, next) => {
   Cart.findOne({ email: email })
     .exec()
     .then((cart) => {
-      if (!cart || qty <= 0) {
+      if (!cart) {
         throw new Error("Invalid request");
       } else {
         const indexFound = cart.items.findIndex((item) => {
