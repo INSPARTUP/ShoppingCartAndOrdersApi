@@ -56,8 +56,7 @@ exports.placeOrder = function (req, res, next) {
     user: req.body.user,
     billingAddress: req.body.billingAddress,
     shippingMethod: req.body.shippingMethod,
-    paymentMethod: req.body.paymentMethod,
-    phoneNumber: req.body.phoneNumber
+    paymentMethod: req.body.paymentMethod
   };
   orderData.items = req.body.items.map(item => {
     return {
