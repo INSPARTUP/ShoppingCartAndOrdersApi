@@ -78,7 +78,7 @@ const OrderScema = new Schema({
   },
   paymentMethod: {
     type: String,
-    default: '"cash_on_delivery"'
+    default: 'cash_on_delivery'
   },
   phoneNumber:{
     type: String,
