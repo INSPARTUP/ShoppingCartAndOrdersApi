@@ -59,11 +59,7 @@ const OrderScema = new Schema({
         'The value of path {PATH} ({VALUE}) is not a valid post code.'
       ]
     },
-    wilaya: {
-      type: String,
-      required: true
-    },
-    deliveryAddress: {
+    district: {
       type: String,
       required: true
     },
@@ -78,11 +74,7 @@ const OrderScema = new Schema({
   },
   paymentMethod: {
     type: String,
-    default: 'cash_on_delivery'
-  },
-  phoneNumber:{
-    type: String,
-    required: true
+    default: '"cash_on_delivery"'
   },
   grandTotal: {
     type: Number,
