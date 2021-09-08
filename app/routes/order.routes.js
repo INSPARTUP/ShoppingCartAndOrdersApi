@@ -7,17 +7,18 @@ module.exports = app => {
 
       
     router.get('/', OrderController.list);
+ // Retrieve all Orders 
     router.get('/orders', OrderController.findAll);
-    // Retrieve all Orders 
+ // Create Order
     router.post('/create', OrderController.placeOrder);
-   //Retrieve Order
+ // Retrieve Order by Id
     router.get('/:orderId', OrderController.get);   
     router.param('orderId', OrderController.load);
-   //Delete Order
+ // Delete Order
     router.delete("/:id", OrderController.delete);
-
+ // Update Order
     router.put("/:id", OrderController.update);
-   // Delete all orders  
-   router.delete("/", OrderController.deleteAll);
+ // Delete all orders  
+    router.delete("/", OrderController.deleteAll);
     app.use("/api/order", router);
 };
