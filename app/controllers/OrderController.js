@@ -206,7 +206,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: "la commandea été supprimé avec succès!"
+          message: "la commande été supprimé avec succès!"
         });
       }
     })
