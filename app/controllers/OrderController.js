@@ -31,13 +31,12 @@ exports.get = function (req, res, next) {
 
 
 
-
 /**
  * Create new order
  * @returns {Order}
  */
 
-exports.placeOrder = function (req, res, next) {
+ exports.placeOrder = function (req, res, next) {
   console.log(req.body);
   // res.json(req.body);
   console.log(Array.isArray(req.body.items));
@@ -93,7 +92,7 @@ exports.placeOrder = function (req, res, next) {
 
           if (product.quantite - item.qty < 0) {
             res.status(500).send({
-              message: `la quantite du produit avec identifiant=${id} est inferieur a la quantite demandé!`
+              message: `la quantite du commande avec identifiant=${id} est inferieur a la quantite demandé!`
             });
             return null;
           } else
@@ -128,6 +127,8 @@ exports.placeOrder = function (req, res, next) {
 
 
 };
+
+
 
 
 
@@ -171,5 +172,91 @@ exports.list = function (req, res, next) {
     .catch(err => {
       const error = new APIError(err.message, httpStatus.INTERNAL_SERVER_ERROR, true);
       return next(error);
+    });
+};
+
+
+// Retrieve all Orders from the database.
+exports.findAll = (req, res) => {
+  const nom = req.query.nom;
+  var condition = nom ? { nom: { $regex: new RegExp(nom), $options: "i" } } : {};
+
+  Order.find(condition)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Une erreur s'est commandee lors de la récupération des commandes."
+      });
+    });
+};
+
+
+// Delete a Order with the specified id in the request
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Order.findByIdAndRemove(id, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Impossible de supprimer la commande avec l'identifiant=${id}. Peut-être que le commande n'a pas été trouvé!`
+        });
+      } else {
+        res.send({
+          message: "la commandea été supprimé avec succès!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Impossible de supprimer la commande avec l'identifiant=" + id
+      });
+    });
+};
+
+
+
+// Update a Order by the id in the request
+exports.update = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Les données à mettre à jour ne peuvent pas être vides!"
+    });
+  }
+
+  const id = req.params.id;
+
+  Order.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Impossible de mettre à jour le commande avec l'identifiant=${id}. Peut-être que commande n'a pas été trouvé!`
+        });
+      } else res.send({ message: "Le commande a été mis à jour avec succès." });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Erreur lors de la mise à jour du commande avec l'ID=" + id
+      });
+    });
+};
+
+
+// Delete all Orders from the database.
+exports.deleteAll = (req, res) => {
+  Order.deleteMany({})
+    .then(data => {
+      res.send({
+        message: `${data.deletedCount} commandes a été supprimé avec succès!`
+      });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Une erreur s'est commandee lors de la suppression de tous les commandes."
+      });
     });
 };

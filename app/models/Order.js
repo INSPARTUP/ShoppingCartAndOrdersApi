@@ -3,6 +3,10 @@ const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 
 const Schema = mongoose.Schema;
+const d = new Date();
+d.setDate(d.getDate() + 5);
+
+
 var ItemSchema = new Schema({
   productId: {
     type: String,
@@ -93,7 +97,23 @@ const OrderScema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  accepted: {
+    type: Boolean,
+    default: false
+  },
+   deliveryTime: {
+    type: Number,
+    default: 5
+  },  
+  deliveredAt: {
+    type: Date,
+    default: d
+  },
+  arrived: {
+    type: Boolean,
+    default: false
+  },
 });
 /**
  * Statics
