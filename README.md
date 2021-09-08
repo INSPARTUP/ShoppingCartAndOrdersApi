@@ -54,22 +54,29 @@ examples with Postman
 ![add order](https://user-images.githubusercontent.com/65148928/120029482-11ff5580-bfee-11eb-8471-bbb61e5b6596.PNG)
 
 
+### Get All Orders
+![get all](https://user-images.githubusercontent.com/65148928/132590768-3e50c0f9-1755-4b90-ab89-189811c37408.png)
 
 
 ### Get Orders
 ![get orders](https://user-images.githubusercontent.com/65148928/120029478-10ce2880-bfee-11eb-8028-19c82a202345.PNG)
 
+### Delete Orders
+![delete order](https://user-images.githubusercontent.com/65148928/132590994-238da147-82f8-4c15-8e5f-ce5e864da876.png)
 
+## Update Order 
+### Update Order 1
+![update order 3](https://user-images.githubusercontent.com/65148928/132591017-a47840af-b9c4-4a0a-8cba-6786af1cd79e.png)
 
-
+### Update Order 2
+![Update Order](https://user-images.githubusercontent.com/65148928/132591005-4421252b-653c-4392-b36d-bdb7264e0aab.png)
 
 ### Get order using Id
 ![get order with orderId](https://user-images.githubusercontent.com/65148928/120029487-13308280-bfee-11eb-9681-26ca5056d01f.PNG)
 
 
-
-
-
+### Delete All Orders
+![Delete all Orders](https://user-images.githubusercontent.com/65148928/132591015-9226c533-85a4-4aae-b69f-ccb78cdf86f2.png)
 
 
 
