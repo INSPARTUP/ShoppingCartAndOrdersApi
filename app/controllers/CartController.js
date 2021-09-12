@@ -13,7 +13,7 @@ exports.add = function (req, res, next) {
   const { email, product_id } = req.body;
   const qty = Number.parseInt(req.body.qty);
   console.log("qty: ", qty);
-  Cart.findOne({ email: email })
+  Cart.find({ email: email })
     .exec()
     .then((cart) => {
       if (!cart && qty <= 0) {
